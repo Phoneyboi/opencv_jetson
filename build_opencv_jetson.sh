@@ -8,9 +8,7 @@ PREFIX=/usr/local
 CPUS=$(nproc)
 JOBS=$((CPUS > 5 ? CPUS : 1))
 BUILD_DIR=/tmp/build_opencv
-# Constants
-readonly DEFAULT_VERSION=4.9.0  # Set your desired OpenCV version here
-
+readonly DEFAULT_VERSION=4.5.5  # Set your desired OpenCV version here
 
 # Functions
 cleanup() {
@@ -22,14 +20,6 @@ setup() {
     mkdir -p "$BUILD_DIR"
     cd "$BUILD_DIR"
 }
-
-get_latest_version() {
-    echo "Fetching the latest OpenCV version..."
-    LATEST_VERSION=$(curl -s https://api.github.com/repos/opencv/opencv/tags | grep 'name' | head -n 1 | cut -d'"' -f4)
-    echo "Latest version is $LATEST_VERSION"
-    echo "$LATEST_VERSION"
-}
-
 
 git_source() {
     local version=$1
@@ -132,7 +122,7 @@ verify_installation() {
 main() {
     setup
     install_dependencies
-    VERSION=$(get_latest_version)
+    VERSION=${DEFAULT_VERSION}
     git_source "$VERSION"
     configure "$VERSION"
     build
