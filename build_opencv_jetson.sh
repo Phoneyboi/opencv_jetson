@@ -22,10 +22,11 @@ setup() {
 
 get_latest_version() {
     echo "Fetching the latest OpenCV version..."
-    LATEST_VERSION=$(curl -s https://api.github.com/repos/opencv/opencv/releases/latest | grep 'tag_name' | cut -d'"' -f4)
+    LATEST_VERSION=$(curl -s https://api.github.com/repos/opencv/opencv/tags | grep 'name' | head -n 1 | cut -d'"' -f4)
     echo "Latest version is $LATEST_VERSION"
     echo "$LATEST_VERSION"
 }
+
 
 git_source() {
     local version=$1
