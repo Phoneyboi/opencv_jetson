@@ -8,7 +8,7 @@ PREFIX=/usr/local
 CPUS=$(nproc)
 JOBS=$((CPUS > 5 ? CPUS : 1))
 BUILD_DIR=/tmp/build_opencv
-readonly DEFAULT_VERSION=4.5.5  # Set your desired OpenCV version here
+readonly DEFAULT_VERSION=4.9.0  # Set your desired OpenCV version here
 
 # Functions
 cleanup() {
